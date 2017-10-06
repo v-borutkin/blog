@@ -28,6 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'description:ntext',
             'content:ntext',
+            'category_id', //Тут название бы вывести а не IDшник
             'date',
             [
                    'format' => 'html',
@@ -39,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'viewed',
             // 'user_id',
             // 'status',
-            // 'category_id',
+
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

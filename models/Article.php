@@ -91,4 +91,25 @@ class Article extends \yii\db\ActiveRecord
         $this->deleteImage();
         return parent::beforeDelete();
     }
+
+    public function getCategory()
+    {
+      return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
+    public function saveCategory($category_id)
+    {
+        $category = Category::findOne($category_id);
+        if ($category !=null)
+        {
+            $this->link('category', $category);
+            return true;
+        }
+        return $this->save(false);
+    }
+
+    public function getTags()
+    {
+       return $this->hasMany(Tag::className(), ['id'=> 'tag_id'])
+           ->viaTable('article_tag', ['article_id' => 'id']);
+    }
 }

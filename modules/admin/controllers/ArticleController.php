@@ -2,10 +2,13 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\Category;
 use app\models\ImageUpload;
+use app\models\Tag;
 use Yii;
 use app\models\Article;
 use app\models\ArticleSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -141,5 +144,38 @@ class ArticleController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionSetCategory($id)
+    {
+        $article = $this->findModel($id);
+        $selectedCategory = $article->category->id;
+        $allCategories = Category::find()->all();
+        $categories = ArrayHelper::map($allCategories, 'id', 'title');
+
+        if (Yii::$app->request->isPost)
+        {
+            $category = Yii::$app->request->post('category');
+
+            if ($article->saveCategory($category))
+            {
+                return $this->redirect(['view', 'id' => $article->id]);
+            }
+
+        }
+
+        return $this->render('category', [
+            'article' => $article,
+            'selectedCategory' => $selectedCategory,
+            'categories' => $categories,
+
+        ]);
+    }
+
+    public function actionSetTags($id)
+    {
+        $tag = Tag::findOne(1);
+        var_dump($tag->articles);die();
+
     }
 }

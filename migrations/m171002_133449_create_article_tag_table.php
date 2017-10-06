@@ -34,6 +34,7 @@ class m171002_133449_create_article_tag_table extends Migration
             'CASCADE'
         );
 
+
         $this->createIndex(
             'idx_tag_id',
             'article_tag',
