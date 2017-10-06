@@ -174,8 +174,22 @@ class ArticleController extends Controller
 
     public function actionSetTags($id)
     {
-        $tag = Tag::findOne(1);
-        var_dump($tag->articles);die();
+        $article = $this->findModel($id);
+        $selectedTags = $article->getSelectedTag();
+        $allTags = Tag::find()->all();
+        $tags = ArrayHelper::map($allTags, 'id', 'title');
+        if (Yii::$app->request->isPost)
+        {
+           $tags =  Yii::$app->request->post('tags');
+           $article->saveTags($tags);
+           return $this->redirect(['view', 'id' =>$article->id]);
+        }
+
+        return $this->render('tags',[
+            'article' => $article,
+            'selectedTags' => $selectedTags,
+            'tags' => $tags,
+        ]);
 
     }
 }
