@@ -15,9 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-md-8 col-md-offset-2">
             <div class="site-login">
                 <h1><?= Html::encode($this->title) ?></h1>
-            
+
                 <p>Please fill out the following fields to login:</p>
-            
+
                 <?php $form = ActiveForm::begin([
                     'id' => 'login-form',
                     'layout' => 'horizontal',
@@ -26,31 +26,29 @@ $this->params['breadcrumbs'][] = $this->title;
                         'labelOptions' => ['class' => 'col-lg-1 control-label'],
                     ],
                 ]); ?>
-            
+
                     <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
-            
+
                     <?= $form->field($model, 'password')->passwordInput() ?>
-            
+
                     <?= $form->field($model, 'rememberMe')->checkbox([
                         'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
                     ]) ?>
-            
+
                     <div class="form-group">
                         <div class="col-lg-offset-1 col-lg-11">
                             <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                         </div>
                     </div>
-            
+
                 <?php ActiveForm::end(); ?>
-            
-                <div class="col-lg-offset-1" style="color:#999;">
-                    You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
-                    To modify the username/password, please check out the code <code>app\models\User::$users</code>.
-                </div>
+
+
             </div>
         </div>
 
         <div class="col-md-2">
+            <!-- Put this script tag to the <head> of your page -->
             <script type="text/javascript" src="//vk.com/js/api/openapi.js?150"></script>
             <script type="text/javascript">
                 VK.init({apiId: 6219074});

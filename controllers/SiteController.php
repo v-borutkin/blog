@@ -71,14 +71,14 @@ class SiteController extends Controller
         $data = Article::getAll(1);
         $popular = Article::getPopular(3);
         $recent = Article::getRecent(4);
-        $category = Category::find()->all();
+        $categories = Category::find()->all();
 
         return $this->render('index', [
             'articles' => $data['articles'],
             'pagination' => $data['pagination'],
             'popular' => $popular,
             'recent' => $recent,
-            'category' => $category,
+            'categories' => $categories,
         ]);
     }
 
@@ -116,15 +116,15 @@ class SiteController extends Controller
         $article = Article::findOne($id);
         $popular = Article::getPopular(3);
         $recent = Article::getRecent(4);
-        $category = Category::find()->all();
+        $categories = Category::find()->all();
         $comments = $article->getComments()->where(['status' => 1]) -> all();
-        $commentForm = new commentForm();
+        $commentForm = new CommentForm();
 
         return $this->render('single', [
             'article' => $article,
             'popular' => $popular,
             'recent' => $recent,
-            'category' => $category,
+            'categories' => $categories,
             'comment' => $comments,
             'commentsForm' => $commentForm,
         ]);
@@ -136,24 +136,18 @@ class SiteController extends Controller
 
         $popular = Article::getPopular(3);
         $recent = Article::getRecent(4);
-        $category = Category::find()->all();
+        $categories = Category::find()->all();
 
         return $this->render('category',[
             'articles' => $date['articles'],
             'pagination' => $date['pagination'],
             'popular' => $popular,
             'recent' => $recent,
-            'category' => $category
+            'categories' => $categories,
 
         ]);
     }
 
-    public function actionTest()
-    {
-        $user = User::findOne(1);
-
-        Yii::$app->user->login($user);
-    }
 
     public function actionComments($id)
     {

@@ -43,13 +43,13 @@ use yii\helpers\Url;
              <?= $this->render('/partials/comment', [
                  'article'=>$article,
                  'comment'=>$comments,
-                 'commentForm'=>$commentForm
+                 'commentForm'=>$commentForm,
              ])?>
             </div>
             <?= $this->render('/partials/sidebar', [
                 'popular'=>$popular,
                 'recent'=>$recent,
-                'categories'=>$categories
+                'categories'=>$categories,
             ]);?>
         </div>
     </div>

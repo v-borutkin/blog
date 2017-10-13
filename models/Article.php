@@ -188,4 +188,9 @@ class Article extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Comment::className(), ['article_id' => 'id']);
     }
+
+    public function getAuthor()
+    {
+        return $this->hasOne(User::className(), ['id' =>'user_id']);
+    }
 }

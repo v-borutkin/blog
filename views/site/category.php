@@ -52,7 +52,7 @@ use yii\widgets\LinkPager;
             <?= $this->render('/partials/sidebar', [
                 'popular'=>$popular,
                 'recent'=>$recent,
-                'categories'=>$categories
+                'categories'=>$categories,
             ]);?>
         </div>
     </div>
