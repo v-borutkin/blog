@@ -2,7 +2,13 @@
 
 namespace app\controllers;
 
+use app\models\Article;
+use app\models\Category;
+use app\models\Comment;
+use app\models\CommentForm;
+use app\models\User;
 use Yii;
+use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
@@ -61,40 +67,21 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
-    }
 
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
+        $data = Article::getAll(1);
+        $popular = Article::getPopular(3);
+        $recent = Article::getRecent(4);
+        $category = Category::find()->all();
 
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-        return $this->render('login', [
-            'model' => $model,
+        return $this->render('index', [
+            'articles' => $data['articles'],
+            'pagination' => $data['pagination'],
+            'popular' => $popular,
+            'recent' => $recent,
+            'category' => $category,
         ]);
     }
 
-    /**
-     * Logout action.
-     *
-     * @return Response
-     */
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
 
     /**
      * Displays contact page.
@@ -123,4 +110,63 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionView($id)
+    {
+        $article = Article::findOne($id);
+        $popular = Article::getPopular(3);
+        $recent = Article::getRecent(4);
+        $category = Category::find()->all();
+        $comments = $article->getComments()->where(['status' => 1]) -> all();
+        $commentForm = new commentForm();
+
+        return $this->render('single', [
+            'article' => $article,
+            'popular' => $popular,
+            'recent' => $recent,
+            'category' => $category,
+            'comment' => $comments,
+            'commentsForm' => $commentForm,
+        ]);
+    }
+
+    public function actionCategory($id)
+    {
+        $date = Category::getArticlesByCategory($id);
+
+        $popular = Article::getPopular(3);
+        $recent = Article::getRecent(4);
+        $category = Category::find()->all();
+
+        return $this->render('category',[
+            'articles' => $date['articles'],
+            'pagination' => $date['pagination'],
+            'popular' => $popular,
+            'recent' => $recent,
+            'category' => $category
+
+        ]);
+    }
+
+    public function actionTest()
+    {
+        $user = User::findOne(1);
+
+        Yii::$app->user->login($user);
+    }
+
+    public function actionComments($id)
+    {
+        $model = new CommentForm();
+        if (Yii::$app->request->isPost)
+        {
+            $model->load(Yii::$app->request->post());
+            if ($model->saveComment($id))
+            {
+                Yii::$app->getSession()->setFlash('comment', 'Ваш комментарий отправлен на премодерацию');
+                return $this->redirect(['site/view', 'id' => $id]);
+            }
+        }
+    }
+
 }

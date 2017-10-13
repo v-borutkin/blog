@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\data\Pagination;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -20,7 +21,7 @@ use yii\helpers\ArrayHelper;
  * @property integer $category_id
  *
  * @property ArticleTag[] $articleTags
- * @property Comment[] $comments
+ * @property Comment[] $comment
  */
 class Article extends \yii\db\ActiveRecord
 {
@@ -124,6 +125,7 @@ class Article extends \yii\db\ActiveRecord
         if (is_array($tags))
         {
 
+
             $this->clearCurrentTags();
             foreach ($tags as $tag_id)
             {
@@ -135,5 +137,55 @@ class Article extends \yii\db\ActiveRecord
     public function clearCurrentTags()
     {
         ArticleTag::deleteAll(['article_id' => $this->id]);
+    }
+    public function getDate()
+    {
+        return Yii::$app->formatter->asDate($this->date);
+    }
+    public static function getAll($pageSize = 5)
+    {
+        $query = Article::find();
+
+        $count = $query->count();
+        $pagination = new Pagination(['totalCount' => $count, 'pageSize' => $pageSize]);
+
+        $articles = $query->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+        $date['articles'] = $articles;
+        $date['pagination'] = $pagination;
+        return $date;
+    }
+
+    public static function getRecent($limit)
+    {
+       $recent =  Article::find()
+            ->orderBy('date asc')
+            ->limit($limit)
+            ->all();
+
+       return $recent;
+    }
+
+    public static function getPopular($limit)
+    {
+        $popular = Article::find()
+            ->orderBy('viewed desc')
+            ->limit($limit)
+            ->all();
+
+        return $popular;
+    }
+
+    public function saveArticle()
+    {
+        $this->user_id = Yii::$app->user->id;
+
+        return $this->save();
+    }
+
+    public function getComments()
+    {
+        return $this->hasMany(Comment::className(), ['article_id' => 'id']);
     }
 }

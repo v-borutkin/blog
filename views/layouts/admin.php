@@ -16,7 +16,6 @@ AppAsset::register($this);
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
@@ -37,22 +36,11 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Главная', 'url' => ['/site/index']],
-            ['label' => 'Статьи', 'url' => ['/admin/article/index']],
-            ['label' => 'Категории', 'url' => ['/admin/category/index']],
-            ['label' => 'Тэги', 'url' => ['/admin/tag/index']],
-            Yii::$app->user->isGuest ? (
-            ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
+            ['label' => 'Home', 'url' => ['/admin/default/index']],
+            ['label' => 'Articles', 'url' => ['/admin/article/index']],
+            ['label' => 'Commentaries', 'url' => ['/admin/comment/index']],
+            ['label' => 'Categories', 'url' => ['/admin/category/index']],
+            ['label' => 'Tag', 'url' => ['/admin/tag/index']]
         ],
     ]);
     NavBar::end();
@@ -75,6 +63,15 @@ AppAsset::register($this);
 </footer>
 
 <?php $this->endBody() ?>
+<?php $this->registerJsFile('/ckeditor/ckeditor.js');?>
+<?php $this->registerJsFile('/ckfinder/ckfinder.js');?>
+<script>
+    $(document).ready(function(){
+        var editor = CKEDITOR.replaceAll();
+        CKFinder.setupCKEditor(editor);
+    })
+
+</script>
 </body>
 </html>
 <?php $this->endPage() ?>
