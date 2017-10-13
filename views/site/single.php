@@ -45,6 +45,7 @@ use yii\helpers\Url;
                  'comment'=>$comments,
                  'commentForm'=>$commentForm,
              ])?>
+
             </div>
             <?= $this->render('/partials/sidebar', [
                 'popular'=>$popular,

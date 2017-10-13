@@ -126,7 +126,7 @@ class SiteController extends Controller
             'recent' => $recent,
             'categories' => $categories,
             'comment' => $comments,
-            'commentsForm' => $commentForm,
+            'commentForm' => $commentForm,
         ]);
     }
 
@@ -149,7 +149,7 @@ class SiteController extends Controller
     }
 
 
-    public function actionComments($id)
+    public function actionComment($id)
     {
         $model = new CommentForm();
         if (Yii::$app->request->isPost)
