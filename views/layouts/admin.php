@@ -38,7 +38,7 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Home', 'url' => ['/admin/default/index']],
             ['label' => 'Articles', 'url' => ['/admin/article/index']],
-            ['label' => 'Commentaries', 'url' => ['/admin/comment/index']],
+            ['label' => 'Comments', 'url' => ['/admin/comment/index']],
             ['label' => 'Categories', 'url' => ['/admin/category/index']],
             ['label' => 'Tag', 'url' => ['/admin/tag/index']]
         ],

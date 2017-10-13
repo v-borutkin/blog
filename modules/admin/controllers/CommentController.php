@@ -10,7 +10,7 @@ class CommentController extends Controller
     {
         $comments = Comment::find()->orderBy('id desc')->all();
 
-        return $this->render('index', ['comment' => $comments]);
+        return $this->render('index', ['comments' => $comments]);
 
     }
 
