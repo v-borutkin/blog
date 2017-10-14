@@ -54,10 +54,3 @@ use yii\helpers\Url;
 </div>
 
 <!-- end main content-->
-
-<li><a class="VK.Share" href="<?= $this->registerJS('document.write(VK.Share.button({
-                                                                                    url: ,
-                                                                                    title: ,
-                                                                                    image: ,
-                                                                                    noparse: true
-    }));')?>"><i class="fa fa-facebook"></i></a></li>
