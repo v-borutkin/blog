@@ -31,6 +31,7 @@ class PublicAsset extends AssetBundle
         'public/js/jquery.stickit.js',
         'public/js/menu.js',
         'public/js/scripts.js',
+        'https://vk.com/js/api/share.js?93'
     ];
 
     public $depends = [
