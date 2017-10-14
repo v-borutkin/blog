@@ -150,7 +150,7 @@ class Article extends \yii\db\ActiveRecord
         $pagination = new Pagination(['totalCount' => $count, 'pageSize' => $pageSize]);
 
         $articles = $query->offset($pagination->offset)
-            ->limit($pagination->limit)
+            ->limit($pagination->limit)->orderBy('date desc')
             ->all();
         $date['articles'] = $articles;
         $date['pagination'] = $pagination;
