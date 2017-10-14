@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "comment".
@@ -16,7 +17,7 @@ use Yii;
  * @property Article $article
  * @property User $user
  */
-class Comment extends \yii\db\ActiveRecord
+class Comment extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -74,13 +75,13 @@ class Comment extends \yii\db\ActiveRecord
 
     public function allow()
     {
-        $this->status = self::STATUS_ALLOW ;
+        $this->status = self::STATUS_ALLOW;
         return $this->save(false);
     }
 
     public function disallow()
     {
-        $this->status = self::STATUS_DISALLOW ;
+        $this->status = self::STATUS_DISALLOW;
         return $this->save(false);
     }
 }

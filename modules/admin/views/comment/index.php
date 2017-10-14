@@ -37,9 +37,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <td> <?= $comment->text?></td>
                 <td>
             <?php if ($comment->status == 0) :?>
-                <a class="btn btn-warning" href="<?= Url::toRoute(['comment/disallow', 'id' => $comment->id ]);?>"> Запретить</a>
-                <?php else:?>
                 <a class="btn btn-success" href="<?= Url::toRoute(['comment/allow', 'id' => $comment->id ]);?>"> Разрешить</a>
+                <?php else:?>
+                <a class="btn btn-warning" href="<?= Url::toRoute(['comment/disallow', 'id' => $comment->id ]);?>"> Запретить</a>
             <?php endif;?>
                     <a class="btn btn-danger" href="<?= Url::toRoute(['comment/delete', 'id' => $comment->id ]);?>"> Удалить</a>
                 </td>
