@@ -9,8 +9,8 @@ use yii\widgets\LinkPager;
             <div class="col-md-8">
                 <?php foreach($articles as $article):?>
                     <article class="post">
-                        <div class="post-thumb">
-                            <a href="<?= Url::toRoute(['site/view', 'id'=>$article->id]);?>"><img height="400"  src="<?= $article->getImage();?>" alt=""></a>
+                        <div class="post-thumb" style="width: 500px; margin: 0 auto" >
+                            <a  href="<?= Url::toRoute(['site/view', 'id'=>$article->id]);?>"><img src="<?= $article->getImage();?>" alt=""></a>
 
                             <a href="<?= Url::toRoute(['site/view', 'id'=>$article->id]);?>" class="post-thumb-overlay text-center">
                                 <div class="text-uppercase text-center">View Post</div>
