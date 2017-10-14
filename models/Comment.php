@@ -84,4 +84,8 @@ class Comment extends ActiveRecord
         $this->status = self::STATUS_DISALLOW;
         return $this->save(false);
     }
+    public function getDate()
+    {
+        return Yii::$app->formatter->asDate($this->date);
+    }
 }

@@ -42,7 +42,7 @@ use yii\helpers\Url;
 
              <?= $this->render('/partials/comment', [
                  'article'=>$article,
-                 'comment'=>$comments,
+                 'comments'=>$comments,
                  'commentForm'=>$commentForm,
              ])?>
 

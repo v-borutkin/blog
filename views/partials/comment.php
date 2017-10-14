@@ -1,5 +1,4 @@
 <?php if(!empty($comments)):?>
-
     <?php foreach($comments as $comment):?>
         <div class="bottom-comment"><!--bottom comment-->
             <div class="comment-img">
