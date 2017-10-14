@@ -119,6 +119,7 @@ class SiteController extends Controller
         $categories = Category::find()->all();
         $comments = $article->getComments()->where(['status' => 1]) -> all();
         $commentForm = new CommentForm();
+        $tags = $article->getTags()->all();
 
         $article->viewedCounter();
         return $this->render('single', [
@@ -128,6 +129,7 @@ class SiteController extends Controller
             'categories' => $categories,
             'comments' => $comments,
             'commentForm' => $commentForm,
+            'tags' => $tags,
         ]);
     }
 

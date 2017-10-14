@@ -21,9 +21,13 @@ use yii\helpers\Url;
                         <div class="entry-content">
                             <?= $article->content?>
                         </div>
+
                         <div class="decoration">
-                            <a href="#" class="btn btn-default">Decoration</a>
-                            <a href="#" class="btn btn-default">Decoration</a>
+                            <br/>
+                            <p style="font-weight: bold">Тэги:</p>
+                            <?php foreach ($tags as $tag) :?>
+                                <p class="btn btn-info"><?= $tag->title?></p>
+                            <?php endforeach?>
                         </div>
 
                         <div class="social-share">

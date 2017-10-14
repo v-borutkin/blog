@@ -124,8 +124,6 @@ class Article extends \yii\db\ActiveRecord
     {
         if (is_array($tags))
         {
-
-
             $this->clearCurrentTags();
             foreach ($tags as $tag_id)
             {
