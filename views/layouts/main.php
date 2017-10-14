@@ -38,14 +38,13 @@ PublicAsset::register($this);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/"><img src="/public/images/logo.jpg" alt=""></a>
             </div>
 
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                 <ul class="nav navbar-nav text-uppercase">
-                    <li><a data-toggle="dropdown" class="dropdown-toggle" href="/">Home</a>
+                    <li><a class="cke_menu_panel" href="/">Главная страница</a>
 
                     </li>
                 </ul>
@@ -58,7 +57,7 @@ PublicAsset::register($this);
                             <?= Html::beginForm(['/auth/logout'], 'post')
                             . Html::submitButton(
                                 'Logout (' . Yii::$app->user->identity->name . ')',
-                                ['class' => 'btn btn-link logout', 'style'=>"padding-top:10px;"]
+                                ['class' => 'btn btn-link logout', 'style'=>"padding-top:20px;"]
                             )
                             . Html::endForm() ?>
                         <?php endif;?>
@@ -81,7 +80,7 @@ PublicAsset::register($this);
         <div class="row">
             <div class="col-md-4">
                 <aside class="footer-widget">
-                    <div class="about-img"><img src="/public/images/logo2.png" alt=""></div>
+                    <div class="widget-title">Изучаю Yii2</div>
                     <div class="about-content">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
                         eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed voluptua. At vero eos et
                         accusam et justo duo dlores et ea rebum magna text ar koto din.
@@ -183,7 +182,7 @@ PublicAsset::register($this);
                         </div>
                         <div>
                             <a href="#" class="text-uppercase">Home is peaceful Place</a>
-                            <span class="p-date">February 15, 2016</span>
+                            <span class="p-date">Октябрь 14, 2017</span>
                         </div>
                     </div>
                 </aside>
@@ -194,7 +193,7 @@ PublicAsset::register($this);
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="text-center">&copy; 2015 <a href="#">Test Blog, </a> Built with <i
+                    <div class="text-center">&copy; 2017 <a href="#">Test Blog, </a> Built with <i
                             class="fa fa-heart"></i> by <a href="#">Atanvar</a>
                     </div>
                 </div>
